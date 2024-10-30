@@ -1,0 +1,161 @@
+[gd_scene load_steps=13 format=3 uid="uid://bqij8fmivarfb"]
+
+[ext_resource type="Script" path="res://vehicle_body_3d.gd" id="1_80wub"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ao2tc"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_eovwr"]
+sky_material = SubResource("ProceduralSkyMaterial_ao2tc")
+
+[sub_resource type="Environment" id="Environment_vdvgn"]
+background_mode = 2
+sky = SubResource("Sky_eovwr")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0iwpe"]
+albedo_color = Color(0.68, 0.44064, 0.3536, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_svnmg"]
+material = SubResource("StandardMaterial3D_0iwpe")
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_en77x"]
+points = PackedVector3Array(-0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t6te6"]
+albedo_color = Color(0.618648, 0.0881861, 0.182527, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ohbt3"]
+material = SubResource("StandardMaterial3D_t6te6")
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_43x57"]
+points = PackedVector3Array(-0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_rijes"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4rg58"]
+albedo_color = Color(0.0159413, 0.386531, 0.41341, 1)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_vdvgn")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+
+[node name="Floor" type="Node3D" parent="."]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Floor"]
+disable_mode = 1
+collision_layer = 3
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D"]
+transform = Transform3D(14.7309, 0, 0, 0, 1, 0, 0, 0, 10.0385, 0, 0, 0)
+mesh = SubResource("BoxMesh_svnmg")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D"]
+transform = Transform3D(14.7309, 0, 0, 0, 1, 0, 0, 0, 10.0385, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_en77x")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 0.92868, 0.370882, 0, -0.370882, 0.92868, -0.479435, 0.664531, 11.895)
+disable_mode = 1
+collision_layer = 3
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D2"]
+transform = Transform3D(14.7309, 0, 0, 0, 1, -2.38419e-07, 0, 0, 10.0385, 0, 1.09061, -1.82715)
+mesh = SubResource("BoxMesh_svnmg")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D2"]
+transform = Transform3D(14.7309, 0, 0, 0, 1, 0, 0, 0, 10.0385, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_en77x")
+
+[node name="StaticBody3D3" type="StaticBody3D" parent="Floor"]
+transform = Transform3D(-4.37114e-08, 0.0511333, -0.998692, 0, 0.998692, 0.0511333, 1, 2.23511e-09, -4.36542e-08, 2.59523, 2.25776, 23.7126)
+disable_mode = 1
+collision_layer = 3
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D3"]
+transform = Transform3D(14.7309, 2.22045e-16, 0, -3.55271e-15, 1, 1.19209e-07, 1.13687e-13, -9.75719e-17, 10.0385, 0, 0, 0)
+mesh = SubResource("BoxMesh_svnmg")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D3"]
+transform = Transform3D(14.7309, 0, 0, 0, 1, 0, 0, 0, 10.0385, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_en77x")
+
+[node name="StaticBody3D4" type="StaticBody3D" parent="Floor"]
+transform = Transform3D(-4.37114e-08, 0.0511333, -0.998692, 0, 0.998692, 0.0511333, 1, 2.23511e-09, -4.36542e-08, -7.27, 2.258, 23.713)
+disable_mode = 1
+collision_layer = 3
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D4"]
+transform = Transform3D(14.7104, 0.052633, 0.027052, -0.771829, 0.997008, -0.570519, -0.083643, 0.0566129, 10.0222, 0, 0.011348, -0.221639)
+mesh = SubResource("BoxMesh_svnmg")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D4"]
+transform = Transform3D(14.7309, 0, 0, 0, 1, 0, 0, 0, 10.0385, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_en77x")
+
+[node name="VehicleBody3D" type="VehicleBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.85124, 2.0634, 0)
+mass = 7.231
+center_of_mass_mode = 1
+center_of_mass = Vector3(0, -0.1, 0)
+inertia = Vector3(0.4, 0, 0)
+linear_velocity = Vector3(0.605, 0, 0)
+engine_force = 22.0
+script = ExtResource("1_80wub")
+ENGINE_POWER = 43
+
+[node name="Vehicle_mesh" type="MeshInstance3D" parent="VehicleBody3D"]
+transform = Transform3D(3.665, 0, 0, 0, 1, 0, 0, 0, 0.472922, 0.345, 0, -0.0848734)
+mesh = SubResource("BoxMesh_ohbt3")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="VehicleBody3D"]
+transform = Transform3D(3, 0, 0, 0, 1, 0, 0, 0, 0.644, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_43x57")
+
+[node name="FrontWhl" type="VehicleWheel3D" parent="VehicleBody3D"]
+transform = Transform3D(6.9064e-08, 1.09278e-07, 1.25, 0, -1.25, 1.09278e-07, -1.58, 4.77671e-15, 5.46392e-08, -1, -0.256521, -0.685562)
+engine_force = 22.0
+use_as_steering = true
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="VehicleBody3D/FrontWhl"]
+transform = Transform3D(4.37114e-08, -0.2, -1.50996e-07, -1, -8.74228e-09, -4.37114e-08, 4.37114e-08, 3.01992e-08, -1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_rijes")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_4rg58")
+
+[node name="FrontWhl2" type="VehicleWheel3D" parent="VehicleBody3D"]
+transform = Transform3D(6.9064e-08, 1.09278e-07, 1.25, 0, -1.25, 1.09278e-07, -1.58, 4.77671e-15, 5.46392e-08, -1, -0.256521, 0.6)
+engine_force = 22.0
+use_as_steering = true
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="VehicleBody3D/FrontWhl2"]
+transform = Transform3D(4.37114e-08, -0.2, -1.50996e-07, -1, -8.74228e-09, -4.37114e-08, 4.37114e-08, 3.01992e-08, -1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_rijes")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_4rg58")
+
+[node name="RearWhl" type="VehicleWheel3D" parent="VehicleBody3D"]
+transform = Transform3D(6.9064e-08, 1.09278e-07, 1.25, 0, -1.25, 1.09278e-07, -1.58, 4.77671e-15, 5.46392e-08, 2, -0.256521, -0.686)
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="VehicleBody3D/RearWhl"]
+transform = Transform3D(4.37114e-08, -0.2, -1.50996e-07, -1, -8.74228e-09, -4.37114e-08, 4.37114e-08, 3.01992e-08, -1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_rijes")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_4rg58")
+
+[node name="RearWhl2" type="VehicleWheel3D" parent="VehicleBody3D"]
+transform = Transform3D(6.9064e-08, 0, 1.25, 0, 1.25, 0, 1.58, 0, -5.46392e-08, 2, -0.256521, 0.6)
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="VehicleBody3D/RearWhl2"]
+transform = Transform3D(4.37114e-08, -0.2, -1.50996e-07, -1, -8.74228e-09, -4.37114e-08, 4.37114e-08, 3.01992e-08, -1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_rijes")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_4rg58")
+
+[node name="Camera3D" type="Camera3D" parent="VehicleBody3D"]
+transform = Transform3D(-3.78552e-08, 0.5, -0.866025, 2.18557e-08, 0.866025, 0.5, 1, 8.88178e-15, -4.37114e-08, -4.40223, 1.88741, 0)

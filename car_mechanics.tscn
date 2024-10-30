@@ -1,0 +1,113 @@
+[gd_scene load_steps=12 format=3 uid="uid://dhk137kww361x"]
+
+[ext_resource type="Script" path="res://vehicle_body_3d.gd" id="1_qcppw"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ao2tc"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_eovwr"]
+sky_material = SubResource("ProceduralSkyMaterial_ao2tc")
+
+[sub_resource type="Environment" id="Environment_vdvgn"]
+background_mode = 2
+sky = SubResource("Sky_eovwr")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_svnmg"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_en77x"]
+points = PackedVector3Array(-0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_43x57"]
+points = PackedVector3Array(-0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t6te6"]
+albedo_color = Color(0.618648, 0.0881861, 0.182527, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ohbt3"]
+material = SubResource("StandardMaterial3D_t6te6")
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_rijes"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4rg58"]
+albedo_color = Color(0.0159413, 0.386531, 0.41341, 1)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_vdvgn")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+
+[node name="Floor" type="Node3D" parent="."]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Floor"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D"]
+transform = Transform3D(14.7309, 0, 0, 0, 1, 0, 0, 0, 10.0385, 0, 0, 0)
+mesh = SubResource("BoxMesh_svnmg")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D"]
+transform = Transform3D(14.7309, 0, 0, 0, 1, 0, 0, 0, 10.0385, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_en77x")
+
+[node name="VehicleBody3D" type="VehicleBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.85124, 1.61164, 0)
+mass = 59.0
+script = ExtResource("1_qcppw")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="VehicleBody3D"]
+shape = SubResource("ConvexPolygonShape3D_43x57")
+
+[node name="Vehicle_mesh" type="MeshInstance3D" parent="VehicleBody3D"]
+transform = Transform3D(5, 0, 0, 0, 1, 0, 0, 0, 0.516965, 0, 0, 0)
+mesh = SubResource("BoxMesh_ohbt3")
+
+[node name="VehicleWheel3D2" type="VehicleWheel3D" parent="VehicleBody3D"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2, -0.3, 0.6)
+use_as_traction = true
+use_as_steering = true
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="VehicleBody3D/VehicleWheel3D2"]
+transform = Transform3D(4.37114e-08, -0.2, -1.50996e-07, -1, -8.74228e-09, -4.37114e-08, 4.37114e-08, 3.01992e-08, -1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_rijes")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_4rg58")
+
+[node name="VehicleWheel3D3" type="VehicleWheel3D" parent="VehicleBody3D"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1, -0.3, 0.6)
+use_as_traction = true
+use_as_steering = true
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="VehicleBody3D/VehicleWheel3D3"]
+transform = Transform3D(4.37114e-08, -0.2, -1.50996e-07, -1, -8.74228e-09, -4.37114e-08, 4.37114e-08, 3.01992e-08, -1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_rijes")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_4rg58")
+
+[node name="VehicleWheel3D4" type="VehicleWheel3D" parent="VehicleBody3D"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1, -0.3, -0.685562)
+use_as_traction = true
+use_as_steering = true
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="VehicleBody3D/VehicleWheel3D4"]
+transform = Transform3D(4.37114e-08, -0.2, -1.50996e-07, -1, -8.74228e-09, -4.37114e-08, 4.37114e-08, 3.01992e-08, -1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_rijes")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_4rg58")
+
+[node name="VehicleWheel3D5" type="VehicleWheel3D" parent="VehicleBody3D"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2, -0.3, -0.686)
+use_as_traction = true
+use_as_steering = true
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="VehicleBody3D/VehicleWheel3D5"]
+transform = Transform3D(4.37114e-08, -0.2, -1.50996e-07, -1, -8.74228e-09, -4.37114e-08, 4.37114e-08, 3.01992e-08, -1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_rijes")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_4rg58")
+
+[node name="Camera3D" type="Camera3D" parent="VehicleBody3D"]
+transform = Transform3D(1.25278e-07, -0.5, 0.866025, 2.18557e-08, 0.866025, 0.5, -1, -4.37114e-08, 1.19422e-07, 4.16342, 2.62688, 0)
